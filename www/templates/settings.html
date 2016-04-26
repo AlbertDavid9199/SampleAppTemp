@@ -1,0 +1,50 @@
+<ion-view view-title="Account">
+
+    <ion-content class="no-padding">        
+        
+        <div class="list">
+        
+            <div class="item item-thumbnail-left bg-assertive" ng-repeat="user in User">
+                <img id="myAvatar" src="{{user.avatar}}">
+                <p class="text-light"><i class="material-icons font-xs light mr10">email</i> {{user.email}}</p>
+                <p class="text-light" ng-show="!userData.location"><i class="material-icons font-xs light mr10">person_pin_circle</i> {{user.location}}</p>
+                <p class="text-light" ng-show="userData.location"><i class="material-icons font-xs light mr10">person_pin_circle</i> {{userData.location}}</p>
+                <p class="text-light"><i class="material-icons font-xs light mr10">phone_iphone</i> {{user.phone}}</p>
+            </div>
+            
+        
+            <div class="text-center bg-light-gray pt30 pb30">
+                
+                <h5 class="center">Change profile picture</h5>
+                <div class="row">
+                    <div class="col bg-assertive pt30 pb30 m10">
+                        <i ng-click="getImage()" class="material-icons light font-mega">photo_library</i>
+                    </div>
+                    <div class="col bg-balanced pt30 pb30 m10">
+                        <i ng-click="getCamera()" class="material-icons light font-mega">camera</i>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            <div class="text-center bg-balanced pt30 pb30">
+                
+                <h5 class="light">Select a new location</h5>
+                <div class="row">
+                    <div class="col pb30 m10 item-input">
+                        <i ng-click="getLocation()" class="material-icons bg-assertive light p10 font-mega mb10">person_pin_circle</i>
+                        <input type="text" ng-model="userData.location" class="bg-light-gray p10" placeholder="Type a new location or tap on the upper button">
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            
+                        
+        </div>
+          
+    </ion-content>
+    
+</ion-view>

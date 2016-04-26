@@ -1,0 +1,24 @@
+<ion-view view-title="Classifs">
+
+    <ion-content class="bg-dark">
+
+        <div ng-show="newestItems.length">    
+
+            <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="getHomeItems()">
+              </ion-refresher>
+            
+            <a class="item-box block relative pt120 pb120 mb5 text-center" ng-repeat="item in newestItems" href="#/app/item/{{item.id}}" style="background: url({{item.picture}}) no-repeat center center;">
+                <h5 ng-show="item.featured == true" class="overlay-lt bg-dark energized p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+                <h5 ng-show="item.staffPicked == true" class="overlay-lt bg-dark balanced p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+                <h5 ng-show="item.featured == false && item.staffPicked == false" class="overlay-lt light bg-dark p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+                <h5 class="overlay-rt light bg-assertive p5 fw400">$ {{item.price}}</h5>
+                <h6 class="overlay-lb dark bg-light p5 fw400 cap">{{item.location | limitTo:40}}</h6> 
+            </a>
+
+        </div>
+
+        
+  </ion-content>
+</ion-view>

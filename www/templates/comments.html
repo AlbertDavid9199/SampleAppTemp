@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Comments</h1>
+    <div class="buttons">
+      <button class="button button-clear pr10" ng-click="closeComments()"><i class="material-icons assertive">power_settings_new</i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content ng-controller="CommentsCtrl" class="bg-light-gray p20">
+      <p ng-hide="currentUser.email" class="text-center energized">Login / Register to comment</p>
+    <form ng-submit="doComment(ItemData)" ng-show="currentUser.email"> 
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Add your message</span>
+          <input type="text" ng-model="commentData.comment">
+        </label>
+        <label class="item">
+          <button class="button button-block button-assertive" type="submit">Comment</button>
+        </label>
+      </div>
+    </form>
+      
+   
+  <div class="list" ng-init="getComments()">
+    <a class="item item-avatar bg-light m5"  ng-repeat="comment in Comments">
+            <img src="{{comment.userAvatar}}">
+            <h4 class="up">{{comment.userEmail | limitTo:1}}</h4>
+            <p class="up font-xs">{{comment.comment}}</p>
+      
+    </a>
+</div>
+          
+  </ion-content>
+</ion-modal-view>

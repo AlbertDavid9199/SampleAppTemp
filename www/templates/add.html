@@ -1,0 +1,164 @@
+<ion-view view-title="Add">
+        
+    <ion-content class="add-screen">
+        
+        <form name="myForm" novalidate>
+            
+            <div class="row">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">What do you want to sell?</span>
+                        <input type="text" placeholder="Name" ng-model="item.itemName" name="name" required ng-change="update(itemName)">
+                            <span class="validError" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                                <span ng-show="myForm.name.$error.required" class="energized font-xs">Product name is required.</span>
+                            </span>
+                            </label>
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    
+                    <label class="item-input item-select" ng-controller="CategsCtrl">
+                        <div class="input-label">
+                            Category:
+                        </div>
+                        <select ng-model="item.categorySelect" name="category" required>
+                            <option ng-repeat="categ in Categories" value="{{categ.id}}">{{categ.name}}</option>
+                        </select>
+                        <span class="validError" ng-show="myForm.category.$dirty && myForm.category.$invalid">
+                            <span ng-show="myForm.category.$error.required" class="energized font-xs">Category is required.</span>
+                        </span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            
+            
+            <div class="text-center bg-light-gray pt30 pb30">
+                
+                <h5 class="center">Select a picture</h5>
+                <div class="row">
+                    <div class="col bg-assertive pt30 pb30 m10">
+                        <i ng-click="getImage()" class="material-icons light font-mega">photo_library</i>
+                    </div>
+                    <div class="col bg-balanced pt30 pb30 m10">
+                        <i ng-click="getCamera()" class="material-icons light font-mega">camera</i>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <img id="myImage" style="width:50%; margin-left: 25%;" />
+            
+            
+            <div class="row">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">How much do you want?</span>
+                        <input type="tel" placeholder="Price (USD)" ng-model="item.itemPrice" name="price" required>
+                            <span class="validError" ng-show="myForm.price.$dirty && myForm.price.$invalid">
+                                <span ng-show="myForm.price.$error.required" class="energized font-xs">Price is required.</span>
+                            </span>
+                            </label>
+                    
+                </div>
+            </div>
+            
+            <div class="row" ng-show="!currentUser.email">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">Where are you from?</span>
+                        <input type="text" placeholder="Location" ng-model="item.location" name="location" required>
+                            <span class="validError" ng-show="myForm.location.$dirty && myForm.location.$invalid">
+                                <span ng-show="myForm.location.$error.required" class="energized font-xs">Location is required.</span>
+                            </span>
+                            </label>
+                    
+                    <a class="button button-clear align-right mt-40 z-hi" ng-click="getLocation()">
+                        <i class="material-icons energized">person_pin_circle</i>
+                    </a>
+                    
+                    
+                </div>
+            </div>
+            
+            
+            <div class="row">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">Describe your item in a few words</span>
+                        <textarea type="text" placeholder="Description" ng-model="item.itemDescription" name="description" required></textarea>
+                        <span class="validError" ng-show="myForm.description.$dirty && myForm.description.$invalid">
+                            <span ng-show="myForm.description.$error.required" class="energized font-xs">Description is required.</span>
+                        </span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            
+            
+            <div class="row" ng-show="!currentUser.email">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">Your email address</span>
+                        <input type="email" placeholder="Email" ng-model="item.userEmail" name="email" required>
+                            <span class="validError" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                                <span ng-show="myForm.email.$error.required" class="energized font-xs">Email is required.</span>
+                            </span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="row" ng-show="!currentUser.email">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">Your phone number</span>
+                        <input type="tel" placeholder="Phone" ng-model="item.userTel" required name="phone" required>
+                            <span class="validError" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+                                <span ng-show="myForm.phone.$error.required" class="energized font-xs">Phone is required.</span>
+                            </span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="row" ng-show="!currentUser.email">
+                <div class="col">
+                    
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label font-sm balanced">Choose a password</span>
+                        <input type="password" placeholder="Password" ng-model="item.userPassword" required name="password" required>
+                            <span class="validError" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                                <span ng-show="myForm.password.$error.required" class="energized font-xs">Password is required.</span>
+                            </span>
+                    </label>
+                    
+                </div>
+            </div>
+        
+            
+            <div class="row">
+                <div class="col colSubmit">
+                    <button ng-disabled="myForm.$invalid && !currentUser" class="button button-assertive button-full" ng-click="send()">
+                        Submit
+                    </button>
+                    
+                </div>
+            </div>
+            
+        </form>
+        
+    </ion-content>
+    
+</ion-view>

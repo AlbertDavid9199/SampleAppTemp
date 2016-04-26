@@ -1,0 +1,17 @@
+<ion-view view-title="Messages">
+
+    
+  <ion-content class="padding" ng-init="getUserComments()">
+      
+  <div class="list">
+    <div class="text-center item" ng-hide="Comments.length">You have no messages.</div>
+    <a class="item item-icon-right"  ng-repeat="comment in Comments" href="#/app/item/{{comment.id}}">
+        <h3>{{comment.itemName}}</h3>
+        <p>{{comment.userEmail | limitTo:3}} - {{comment.comment}}</p>
+            <i class="material-icons align-right mt-30 balanced">keyboard_arrow_right</i>
+    </a>
+</div>
+      
+      
+  </ion-content>
+</ion-view>

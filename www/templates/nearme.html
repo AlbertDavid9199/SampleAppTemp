@@ -1,0 +1,51 @@
+<ion-view view-title="">
+    
+    <ion-content>    
+    
+        
+        
+        <map style="width:1000px; height:1000px;"
+             center="{{currentUser.get('coords').latitude}},{{currentUser.get('coords').longitude}}" 
+             zoom="14"
+             disable-default-u-i="true"
+             disable-double-click-zoom="true"
+             draggable="true"
+         >
+            
+            <span ng-repeat="item in nearItems">
+            <marker 
+                id="{{item.id}}"
+                position="[{{item.coords}}]"
+                draggable="true"
+                visible="true"
+                icon="img/marker.png"
+                title="{{item.name}}" 
+                    on-click="showInfoWindow(event, 'window')"
+                ></marker>            
+            
+                <info-window id="window" visible-on-marker="{{item.id}}">
+                     <div ng-non-bindable>
+                        <div id="siteNotice"></div>
+                         <img src="{{item.picture}}" />
+                          <h5 id="firstHeading" class="firstHeading">{{item.name}}</h5>
+                          <p>{{item.location}}</p>
+                         <p>$ {{item.price}}</p>
+                          <a href="#/app/item/{{item.id}}" class="button button-clear">details <i class="icon ion-ios-arrow-forward"></i> </a>
+                          <h1>&nbsp;</h1>
+                        <div id="bodyContent">
+                          <p></p>
+                        </div>
+                    </div>
+                </info-window>
+            </span>
+        </map>
+        
+        
+  </ion-content>
+    
+</ion-view>
+
+
+
+
+

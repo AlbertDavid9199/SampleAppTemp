@@ -1,0 +1,38 @@
+<ion-view view-title="{{categoryName}}">
+    
+
+    
+    <ion-content class="no-padding bg-dark">
+
+        
+        <div ng-show="!Items.length" class="text-center padding pt60 pb120 bg-assertive">
+            <h1 class="light">No listings</h1>
+            <h3 class="light pb120">for this category</h3>
+            <h1 class="pb120"><i class="material-icons font-extra energized">mood_bad</i></h1>
+            <h1 class="mb120"><a ng-href="#/app/add" class="button button-balanced">Add yours</a></h1>
+            
+        </div>
+        
+
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="getItems()">
+              </ion-refresher>
+        
+        <a class="item-box block relative pt120 pb120 mb5 text-center" ng-repeat="item in Items" href="#/app/item/{{item.id}}" style="background: url({{item.picture}}) no-repeat center center;">
+                <h5 ng-show="item.featured == true" class="overlay-lt bg-dark energized p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+                <h5 ng-show="item.staffPicked == true" class="overlay-lt bg-dark balanced p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+                <h5 ng-show="item.featured == false && item.staffPicked == false" class="overlay-lt light bg-dark p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+                <h5 class="overlay-rt light bg-assertive p5 fw400">$ {{item.price}}</h5>
+                <h6 class="overlay-lb dark bg-light p5 fw400 cap">{{item.location | limitTo:40}}</h6> 
+            </a>
+        
+        
+
+  
+    <a ng-show="pagenext < ItemsLength" ng-click="nextPage()" class="button button-clear button-block">
+        <i class="icon ion-ios-refresh-outline"></i>
+    </a>
+  </ion-content>
+    
+</ion-view>

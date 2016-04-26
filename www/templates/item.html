@@ -1,0 +1,57 @@
+<ion-view view-title="" ng-init="getItemDetails()">
+    <span ng-repeat="item in Item">
+    <ion-content ng-repeat="user in Submitter">
+        <div class="">            
+            <h5 ng-show="item.featured == true" class="overlay-lt bg-dark energized p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+            <h5 ng-show="item.staffPicked == true" class="overlay-lt bg-dark balanced p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+            <h5 ng-show="item.featured == false && item.staffPicked == false" class="overlay-lt light bg-dark p5 fw600 cap">{{item.name | limitTo:40}}</h5>
+            <h5 class="overlay-rt light bg-assertive p5 fw400">$ {{item.price}}</h5>
+            <img src="{{item.picture}}" width="100%" />
+        </div>
+
+        
+        
+        <span class="button-bar">
+            <a ng-click="itemDetails()" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">info</i>
+            </a>
+            <a ng-click="addToFavourites()" ng-show="currentUser.email" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">favorite</i>
+            </a>
+            <a ng-click="onShare()" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">share</i>
+            </a>
+            <a ng-click="comments()" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">chat</i>
+            </a>
+            <a ng-href="tel:{{user.phone}}" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">phonelink_ring</i>
+            </a>
+            <a ng-href="mailto:{{user.email}}?subject=New message for {{item.name}}" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">email</i>
+            </a>
+            <a ng-hide="(item.lat == 0 && item.lon == 0)" ng-click="itemMap()" class="button bg-light-gray pt10 assertive">
+                <i class="material-icons">map</i>
+            </a>
+            
+        </span>
+        
+        <div id="mapDisplay" class="">
+        <map 
+             center="{{item.lat}},{{item.lon}}" 
+             zoom="14"
+             disable-default-u-i="true"
+             disable-double-click-zoom="true"
+             draggable="true">
+            <marker
+                position="[{{item.lat}},{{item.lon}}]"
+                animation="Animation.BOUNCE"
+                draggable="false"
+                icon="img/marker.png"></marker>
+        </map>
+        </div>
+        
+    </ion-content>
+        
+    </span>
+</ion-view>

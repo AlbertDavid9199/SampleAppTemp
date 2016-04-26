@@ -1,0 +1,17 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Details</h1>
+    <div class="buttons">
+      <button class="button button-clear pr10" ng-click="closeDetails()"><i class="material-icons assertive">power_settings_new</i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content ng-repeat="item in Item" class="p20 bg-assertive">
+             
+                <h3 class="light pt10">{{item.name}}</h3>
+          
+                <h6 class="light pb20">{{item.location}}</h6>
+ 
+              <p class="light">{{item.description}}</p>
+            
+  </ion-content>
+</ion-modal-view>

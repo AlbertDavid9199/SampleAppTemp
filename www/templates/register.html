@@ -1,0 +1,51 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Register</h1>
+    <div class="buttons">
+      <button class="button button-clear pr10" ng-click="closeRegister()"><i class="material-icons assertive">power_settings_new</i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="bg-light-gray">
+    <form name="registerForm" novalidate>
+      <div class="list">
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Your email address</span>
+          <input type="email" placeholder="Email" ng-model="registerData.email" required name="email">
+              <span class="validError" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                  <span ng-show="registerForm.email.$error.required">Email is required.</span>
+              </span>
+        </label>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Choose a password</span>
+          <input type="password" placeholder="Password" ng-model="registerData.password" required name="password">
+              <span class="validError" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                  <span ng-show="registerForm.password.$error.required">Password is required.</span>
+              </span>
+        </label>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">We need your phone number</span>
+          <input type="tel" placeholder="Phone Number" ng-model="registerData.phone" required name="phone">
+              <span class="validError" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                  <span ng-show="registerForm.phone.$error.required">Phone is required.</span>
+              </span>
+        </label>
+        <list class="item item-input item-button-right item-floating-label">
+            <span class="input-label">Where are you from?</span>
+          <input type="text" placeholder="Location" ng-model="registerData.location" required name="location">
+              <span class="validError" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                  <span ng-show="registerForm.location.$error.required">Location is required.</span>
+              </span>
+
+            <a class="button button-clear align-right mt10" ng-click="getLocation()">
+                <i class="material-icons energized">person_pin_circle</i>
+            </a>
+        </list>
+        <label class="item">
+          <button ng-disabled="registerForm.$invalid" class="button button-block button-assertive" ng-click="doRegister()" >Register</button>
+        </label>
+      </div>
+        <p class="text-center">Already registered?</p>
+        <a class="button button-clear button-energized button-block" ng-click="login()">Log In</a>
+    </form>
+  </ion-content>
+</ion-modal-view>

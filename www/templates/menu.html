@@ -1,0 +1,93 @@
+<div class="menu-overlay" ng-click="closeMenuLeft()" on-swipe-left="closeMenuLeft()"></div>
+<ion-side-menus enable-menu-with-back-views="true" class="bg-assertive">
+  <ion-side-menu-content on-swipe-right="openMenuLeft()">
+    <ion-nav-bar class="bar-assertive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+          <a class="pl10" menu-toggle="left" ng-click="openMenuLeft()"><i class="material-icons">short_text</i></a>
+            <a class="ml30" href="#/app/add"><i class="material-icons light">add_circle_outline</i></a>
+      </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+          <a class="pr10" menu-toggle="right"><i class="material-icons">power_input</i></a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" width="230" class="animate">
+        
+    <ion-content class="bg-assertive">
+        
+        <div class="text-center pt30">
+                    
+            <h4 ng-show="currentUser" class="text-center light">Welcome back,<h6 class="light">{{currentUser.email}}</h6></h4>
+            
+        </div>
+        
+        <div class="p20">
+        
+            <a ng-click="login()" ng-hide="currentUser" class="item row row-center p20">
+                <i class="material-icons mr20">assignment_ind</i>
+                <p class="up font-sm">log in</p>
+            </a>
+                  
+            <a href="#/home" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+                <i class="material-icons mr20">dashboard</i>
+                <p class="up font-sm">home</p>
+            </a>
+        <a ng-click="search()" class="item row row-center p20">
+            <i class="material-icons mr20">search</i>
+                <p class="up font-sm">search</p>
+            </a>
+          <a ng-show="currentUser" href="#/app/userfavourites" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+              <i class="material-icons mr20">favorite</i>
+              <p class="up font-sm">my favs</p>
+            </a>
+          <a ng-show="currentUser" href="#/app/useritems" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+              <i class="material-icons mr20">view_carousel</i>
+              <p class="up font-sm">my ads</p>
+            </a>
+          <a ng-show="currentUser" href="#/app/usercomments" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+              <i class="material-icons mr20">chat</i>
+              <p class="up font-sm">messages</p>
+            </a>
+          <a ng-show="currentUser" href="#/app/settings" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+              <i class="material-icons mr20">settings</i>
+              <p class="up font-sm">settings</p>
+            </a>
+          <a href="#/app/help" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+              <i class="material-icons mr20">live_help</i>
+              <p class="up font-sm">help</p>
+            </a>
+
+          <a ng-show="currentUser.get('coords')" href="#/app/nearme" ng-show="currentUser" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+              <i class="material-icons mr20">my_location</i>
+              <p class="up font-sm">near me</p>
+            </a>
+          
+            <a ng-click="doLogout()" ng-show="currentUser" class="item row row-center p20" nav-clear menu-close ng-click="closeMenuLeft()">
+                <i class="material-icons mr20">lock</i>
+                <p class="up font-sm">log out</p>
+            </a>
+            
+        </div>
+            
+
+    </ion-content>
+  </ion-side-menu>
+    
+  <ion-side-menu side="right" width="220" class="bg-assertive">
+      <ion-content class="padding" ng-controller="CategsCtrl">
+          <a ng-repeat="categ in Categories | orderBy:'categName'" class="item row row-center p20" href="#/app/items/{{categ.id}}" nav-clear menu-close>
+              <i class="material-icons mr20">{{categ.icon}}</i> 
+              <p class="up font-sm">{{categ.name}}</p>
+          </a>  
+    </ion-content>
+</ion-side-menu>
+  
+</ion-side-menus>
+
+
+
